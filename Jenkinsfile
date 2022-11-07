@@ -21,12 +21,12 @@ pipeline {
                 sh 'docker build -t $DOCKER_ID/cotu:latest .'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-                sh 'docker run --rm -e CI=true $DOCKER_ID/cotu pytest'
-            }
-        }
+//        stage('Test') {
+//            steps {
+//                echo 'Testing..'
+//                sh 'docker run --rm -e CI=true $DOCKER_ID/cotu pytest'
+//            }
+//        }
         stage('Publish') {
             steps {
                 echo 'Publishing image to DockerHub..'
