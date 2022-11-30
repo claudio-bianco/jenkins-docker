@@ -24,8 +24,8 @@ pipeline {
         stage('Zip') {
             steps {
                 echo 'Ziping image..'
-                sh 'mkdir myzip'
-                dir('myzip'){
+                sh 'mkdir myzip1'
+                dir('myzip1'){
                     sh 'docker save $DOCKER_ID/cotu:latest > mydocker.tar.gz'
                 }
             }
