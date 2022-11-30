@@ -15,6 +15,18 @@ pipeline {
                 sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin'
             }
         }
+        stage('AWS') {
+            agent {
+                docker {
+                    image 'amazon/aws-cli'
+                    args '-u root:root'
+                }
+            }            
+            steps {
+                echo 'AWS command..'
+                sh 'aws --version'
+            }
+        }        
         stage('Build') {
             steps {
                 echo 'Building image..'
