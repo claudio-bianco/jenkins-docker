@@ -5,7 +5,7 @@ pipeline {
         DOCKER_ID = credentials('DOCKER_ID')
         DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
         AWS_DEFAULT_REGION="us-east-1"
-        THE_BUTLER_SAYS_SO=credentials('cmb-aws-creds')
+        THE_BUTLER_SAYS_SO=credentials('cmb-aws-cred')
     }
 
     stages {
