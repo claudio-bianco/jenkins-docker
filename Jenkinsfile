@@ -21,6 +21,15 @@ pipeline {
                 sh 'docker build -t $DOCKER_ID/cotu:latest .'
             }
         }
+        stage('Zip') {
+            steps {
+                echo 'Ziping image..'
+                sh 'mkdir myzip'
+                dir(myzip){
+                    sh 'docker save $DOCKER_ID/cotu:latest > mydocker.tar.gz'
+                }
+            }
+        }        
 //        stage('Test') {
 //            steps {
 //                echo 'Testing..'
