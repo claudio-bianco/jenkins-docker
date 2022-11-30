@@ -24,7 +24,7 @@ pipeline {
             }            
             steps {
                 echo 'AWS command..'
-                sh 'aws --version'
+                sh '''aws --version'''
             }
         }        
         stage('Build') {
