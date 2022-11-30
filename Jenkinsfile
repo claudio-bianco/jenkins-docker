@@ -4,6 +4,8 @@ pipeline {
     environment {
         DOCKER_ID = credentials('DOCKER_ID')
         DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+        AWS_DEFAULT_REGION="us-east-1"
+        THE_BUTLER_SAYS_SO=credentials('cmb-aws-creds')
     }
 
     stages {
@@ -18,7 +20,10 @@ pipeline {
         stage('AWS') {           
             steps {
                 echo 'AWS command..'
-                sh ''' aws --version '''
+                sh '''
+                  aws --version
+                  aws ec2 describe-instances
+                '''
             }
         }        
         stage('Build') {
