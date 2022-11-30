@@ -19,7 +19,6 @@ pipeline {
             agent {
                 docker {
                     image 'amazon/aws-cli'
-                    args '-u root:root'
                 }
             }            
             steps {
