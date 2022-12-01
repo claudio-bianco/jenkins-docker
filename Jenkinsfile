@@ -19,7 +19,7 @@ pipeline {
         }
         stage('AWS') {           
             steps {
-                echo 'AWS command..'
+                echo 'AWS command..'allowEmptyArchive: true,
                 sh '''
                   aws --version
                   aws ec2 describe-instances
@@ -32,7 +32,7 @@ pipeline {
                     sh 'mkdir archive'
                     sh 'echo test > archive/test.txt'
                     zip zipFile: 'test.zip', archive: false, dir: 'archive'
-                    archiveArtifacts allowEmptyArchive: true, artifacts: 'test.zip', fingerprint: true
+                    archiveArtifacts allowEmptyArchive: true, artifacts: 'test.zip'
                 }
             }
         }
