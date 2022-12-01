@@ -19,7 +19,7 @@ pipeline {
         }
         stage('AWS') {           
             steps {
-                echo 'AWS command..'allowEmptyArchive: true,
+                echo 'AWS command..'
                 sh '''
                   aws --version
                   aws ec2 describe-instances
