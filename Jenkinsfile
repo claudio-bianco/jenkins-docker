@@ -53,7 +53,7 @@ pipeline {
                 sh 'cat archive_new/test14.txt'
             }
         }        
-        stage('pull artifact new') {
+        stage('new pull artifact new') {
             steps {                
                     copyArtifacts filter: 'test13.zip', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
                 //  unzip zipFile: 'test11.zip', dir: './archive_new'
