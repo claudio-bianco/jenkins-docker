@@ -28,7 +28,6 @@ pipeline {
         }
         stage ('push artifact') {
             steps {
-                script{
                     sh 'mkdir archive9'
                     sh 'echo test > archive9/test9.txt'
                     zip zipFile: 'test9.zip', archive: false, dir: 'archive9'
@@ -38,7 +37,6 @@ pipeline {
                     sh 'aws s3 cp $WORKSPACE/test9.zip s3://create-lambda-from-zip-file/'
                 //  sh 'aws s3 cp $WORKSPACE/archive5 s3://create-lambda-from-zip-file/ --recursive --include "*"'
                 //  archiveArtifacts allowEmptyArchive: true, artifacts: 'test.zip'
-                }
             }
         }
         stage('pull artifact') {
