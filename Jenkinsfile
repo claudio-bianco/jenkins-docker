@@ -29,14 +29,14 @@ pipeline {
         stage ('push artifact') {
             steps {
                 script{
-                    sh 'mkdir archive5'
-                    sh 'echo test > archive5/test5.txt'
-                    zip zipFile: 'test5.zip', archive: false, dir: 'archive5'
+                    sh 'mkdir archive6'
+                    sh 'echo test > archive6/test6.txt'
+                    zip zipFile: 'test6.zip', archive: true, dir: 'archive6'
                     sh 'ls'
-                    sh 'cd $WORKSPACE/archive5 && ls'
+                    sh 'cd $WORKSPACE/archive6 && ls'
                     sh 'aws s3 ls'
-                    sh 'aws s3 cp $WORKSPACE/archive4/test5.zip s3://create-lambda-from-zip-file/'
-                    sh 'aws s3 cp $WORKSPACE/archive5 s3://create-lambda-from-zip-file/ --recursive --include "*"'
+                    sh 'aws s3 cp $WORKSPACE/test6.zip s3://create-lambda-from-zip-file/'
+                //  sh 'aws s3 cp $WORKSPACE/archive5 s3://create-lambda-from-zip-file/ --recursive --include "*"'
                 //  archiveArtifacts allowEmptyArchive: true, artifacts: 'test.zip'
                 }
             }
