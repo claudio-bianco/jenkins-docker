@@ -41,13 +41,11 @@ pipeline {
             }
         }
         stage('pull artifact') {
-            steps {
-                script{
+            steps {                
                     copyArtifacts filter: 'test12.zip', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
                 //  unzip zipFile: 'test11.zip', dir: './archive_new'
-                    unzip test12.zip -d ./archive_new
-                    sh 'cat archive_new/test12.txt'
-                }
+                    sh 'unzip test12.zip -d ./archive_new'
+                    sh 'cat archive_new/test12.txt'                
             }
         }        
         stage('Build') {
