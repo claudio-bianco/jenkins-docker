@@ -29,11 +29,11 @@ pipeline {
         stage ('push artifact') {
             steps {
                 script{
-                    sh 'mkdir archive'
-                    sh 'echo test > archive/test.txt'
-                    zip zipFile: 'test.zip', archive: false, dir: 'archive'
+                    sh 'mkdir archive1'
+                    sh 'echo test > archive1/test1.txt'
+                    zip zipFile: 'test1.zip', archive: false, dir: 'archive1'
                     sh 'aws s3 ls'
-                    sh 'aws s3 cp test.zip s3://create-lambda-from-zip-file/'
+                    sh 'aws s3 cp test1.zip s3://create-lambda-from-zip-file/'
                 //  archiveArtifacts allowEmptyArchive: true, artifacts: 'test.zip'
                 }
             }
