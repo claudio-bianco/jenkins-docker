@@ -28,24 +28,24 @@ pipeline {
         }
         stage ('push artifact') {
             steps {
-                    sh 'mkdir archive12'
-                    sh 'echo test > archive12/test12.txt'
-                    sh 'zip -r test12.zip archive12'
+                    sh 'mkdir archive13'
+                    sh 'echo test > archive13/test13.txt'
+                    sh 'zip -r test13.zip archive13'
                 //  zip zipFile: 'test9.zip', archive: false, dir: 'archive9'
                     sh 'ls'
-                    sh 'cd $WORKSPACE/archive12 && ls'
+                    sh 'cd $WORKSPACE/archive13 && ls'
                     sh 'aws s3 ls'
-                    sh 'aws s3 cp $WORKSPACE/test12.zip s3://create-lambda-from-zip-file/'
+                    sh 'aws s3 cp $WORKSPACE/test13.zip s3://create-lambda-from-zip-file/'
                 //  sh 'aws s3 cp $WORKSPACE/archive5 s3://create-lambda-from-zip-file/ --recursive --include "*"'                
-                    archiveArtifacts artifacts: 'test11.zip', fingerprint: true
+                    archiveArtifacts artifacts: 'test13.zip', fingerprint: true
             }
         }
         stage('pull artifact') {
             steps {                
-                    copyArtifacts filter: 'test12.zip', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
+                    copyArtifacts filter: 'test13.zip', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
                 //  unzip zipFile: 'test11.zip', dir: './archive_new'
-                    sh 'unzip test12.zip -d ./archive_new'
-                    sh 'cat archive_new/test12.txt'                
+                    sh 'unzip test13.zip -d ./archive_new'
+                    sh 'cat archive_new/test13.txt'                
             }
         }        
         stage('Build') {
