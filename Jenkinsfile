@@ -32,14 +32,14 @@ pipeline {
                     sh 'mkdir archive'
                     sh 'echo test > archive/test.txt'
                     zip zipFile: 'test.zip', archive: false, dir: 'archive'
-                    archiveArtifacts artifacts: 'test.zip', fingerprint: true
+                    archiveArtifacts(artifacts: 'test.zip', fingerprint: true)
                 }
             }
         }
         stage('pull artifact') {
             steps {
                 script{
-                    copyArtifacts filter: 'test.zip', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
+                    copyArtifacts(filter: 'test.zip', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER))
                     unzip zipFile: 'test.zip', dir: './archive_new'
                     sh 'cat archive_new/test.txt'
                 }
