@@ -32,7 +32,9 @@ pipeline {
                     sh 'mkdir archive'
                     sh 'echo test > archive/test.txt'
                     zip zipFile: 'test.zip', archive: false, dir: 'archive'
-                    archiveArtifacts allowEmptyArchive: true, artifacts: 'test.zip'
+                    sh 'aws s3 ls'
+                    sh 'aws s3 cp test.zip s3://create-lambda-from-zip-file/'
+                //  archiveArtifacts allowEmptyArchive: true, artifacts: 'test.zip'
                 }
             }
         }
